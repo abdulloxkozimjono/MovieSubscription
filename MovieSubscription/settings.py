@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
+
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure--eg4#b%k8o45e_#4-lfel%vdxa8ytd%+qj14y*sxb&lwm$)^k9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [37.60.235.197]
+ALLOWED_HOSTS = ['37.60.235.197']
 
 
 # Application definition
@@ -107,6 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Login & Logout URLs
 LOGIN_URL = 'account:login'
 LOGIN_REDIRECT_URL = 'movies:movie_list'
 LOGOUT_REDIRECT_URL = 'account:login'
@@ -123,26 +124,29 @@ USE_I18N = True
 
 USE_TZ = True
 
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
 ]
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+# Media files (uploaded content)
 MEDIA_URL = '/images/'
+MEDIA_ROOT = BASE_DIR / 'static/images'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configure PayPal SDK settings
+
+# PayPal Configuration
 PAYPAL_MODE = os.getenv('PAYPAL_MODE', default='sandbox')
 PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID', default='YOUR_SANDBOX_CLIENT_ID')
 PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET', default='YOUR_SANDBOX_CLIENT_SECRET')
