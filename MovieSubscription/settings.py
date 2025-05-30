@@ -76,10 +76,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+
+import os  # Boshida bo'lishi kerak
 # ✅ STATIC SETTINGS
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Must be str (not Path)
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ✅ to‘g‘ri
+
 
 # ✅ MEDIA SETTINGS
 MEDIA_URL = '/images/'
